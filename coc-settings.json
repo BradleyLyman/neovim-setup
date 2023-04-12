@@ -1,0 +1,38 @@
+{
+  "suggest.floatConfig": {
+    "border": true,
+    "highlight": "Normal",
+    "shadow": false
+  },
+  "diagnostic.floatConfig": {
+    "border": true,
+    "highlight": "Normal",
+    "shadow": false
+  },
+  "signature.floatConfig": {
+    "border": true,
+    "highlight": "Normal",
+    "shadow": false
+  },
+  "hover.floatConfig": {
+    "border": true,
+    "highlight": "Normal",
+    "shadow": false
+  },
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "graphql",
+    "handlebars",
+    "html",
+    "css",
+    "markdown",
+    "rust"
+  ],
+  "inlayHint.enable": false,
+  "rust-analyzer.server.extraEnv": { "RUSTUP_TOOLCHAIN": "nightly" },
+  "rust-analyzer.checkOnSave.command": "clippy"
+}
