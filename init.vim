@@ -10,6 +10,9 @@ call plug#begin("~/AppData/Local/nvim/plugged")
   Plug 'MunifTanjim/nui.nvim'
   Plug 'VonHeikemen/fine-cmdline.nvim'
   Plug 'echasnovski/mini.indentscope'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'fannheyward/telescope-coc.nvim'
+  Plug 'nvim-lua/plenary.nvim'
 
   Plug 'godlygeek/tabular'
 
@@ -23,6 +26,16 @@ lua << EOF
 require('mini.indentscope').setup({
   symbol = "╎",
 })
+
+require("telescope").setup({
+  extensions = {
+    coc = {
+      theme = "ivy",
+      prefer_locations = true,
+    }
+  }
+})
+require("telescope").load_extension('coc')
 EOF
 
 
@@ -164,5 +177,3 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
-
-
