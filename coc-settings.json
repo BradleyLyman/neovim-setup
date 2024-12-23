@@ -1,27 +1,13 @@
 {
-  "suggest.floatConfig": {
-    "border": true,
-    "highlight": "Normal",
-    "shadow": false
-  },
-  "diagnostic.floatConfig": {
-    "border": true,
-    "highlight": "Normal",
-    "shadow": false
-  },
-  "signature.floatConfig": {
-    "border": true,
-    "highlight": "Normal",
-    "shadow": false
-  },
-  "hover.floatConfig": {
-    "border": true,
-    "highlight": "Normal",
-    "shadow": false
-  },
-  "[java][rust][markdown][css][html][handlebars][graphql][json][javascript][typescript][javascriptreact][typescriptreact]": {
+  "[java][rust][css][html][handlebars][graphql][json][javascript][typescript][javascriptreact][typescriptreact][elixir][astro]": {
     "coc.preferences.formatOnSave": true
   },
   "inlayHint.enable": false,
-  "rust-analyzer.server.extraEnv": { "RUSTUP_TOOLCHAIN": "nightly" }
+  "rust-analyzer.check.command": "clippy",
+  "languageserver": {
+    "slangd": {
+      "command": "slangd",
+      "filetypes": ["slang"]
+    }
+  }
 }

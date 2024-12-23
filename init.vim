@@ -1,10 +1,11 @@
-let &shell = has('win32') ? 'powershell' : 'pwsh'
-let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+let &shell = 'pwsh'
+let &shellcmdflag = '-NoLogo -Command'
 let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 set shellquote= shellxquote=
 
 call plug#begin("~/AppData/Local/nvim/plugged")
+  Plug 'wuelnerdotexe/vim-astro'
   Plug 'preservim/nerdtree'
   Plug 'overcache/NeoSolarized'
   Plug 'MunifTanjim/nui.nvim'
@@ -20,6 +21,7 @@ call plug#begin("~/AppData/Local/nvim/plugged")
   Plug 'vim-airline/vim-airline-themes'
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'elixir-editors/vim-elixir'
 call plug#end()
 
 lua << EOF
@@ -68,10 +70,13 @@ colorscheme NeoSolarized
 
 hi ColorColumn ctermbg=Black
 
+let g:astro_typescript = 'enable'
+
 let g:latex_to_unicode_tab = 0
 let g:latex_to_unicode_auto = 0
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'jsformatter'
 let g:airline_theme='luna'
 
 " ------------------
@@ -129,6 +134,18 @@ augroup rust
   autocmd FileType rust :set shiftwidth=4
 augroup end
 
+augroup elixir
+  autocmd!
+  autocmd FileType elixir :set syntax=OFF
+augroup end
+
+augroup slang
+  autocmd!
+  autocmd FileType slang :set syntax=OFF
+  autocmd FileType slang :set tabstop=4
+  autocmd FileType slang :set shiftwidth=4
+augroup end
+
 " ----------------
 " -- COC CONFIG --
 " ----------------
@@ -165,6 +182,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 nnoremap <leader>gh :call <SID>show_documentation()<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>f  <Plug>(coc-fix-current)
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -176,4 +194,13 @@ function! s:show_documentation()
   else
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
+endfunction
+
+
+function! ShaderMode()
+  execute "hi Normal guibg=NONE ctermbg=NONE"
+endfunction
+
+function! NormalMode()
+  colorscheme NeoSolarized
 endfunction
